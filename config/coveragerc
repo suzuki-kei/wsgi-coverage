@@ -1,0 +1,11 @@
+
+[run]
+branch = True
+data_file = /opt/wsgi-coverage-app/target/coverage/data/coverage
+omit =
+    *.wsgi
+    */wsgi_coverage/*
+
+[html]
+directory = /opt/wsgi-coverage-app/target/coverage/report
+

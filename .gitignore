@@ -2,3 +2,6 @@
 # vim
 *.swp
 
+# generated files.
+/target/
+
