@@ -4,12 +4,15 @@ WSGI アプリケーションに対するマニュアルテストのカバレッ
 
 # 各種手順
 
-    # イメージをビルドする
+    # イメージをビルドする.
     docker build -t wsgi-coverage .
 
-    # httpd を実行する
+    # イメージ内のソースコードでアプリケーションを実行する.
+    docker run -it --rm -p 8080:80 wsgi-coverage
+
+    # 手元にある最新のソースコードでアプリケーションを実行する.
     docker run -it --rm -v $(pwd)/src:/opt/wsgi-coverage-app:ro -p 8080:80 wsgi-coverage
 
-    # bash を実行する (for debug)
+    # (for debug) bash を実行する.
     docker run -it --rm -v $(pwd)/src:/opt/wsgi-coverage-app:ro -p 8080:80 wsgi-coverage bash
 
