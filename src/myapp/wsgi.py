@@ -2,16 +2,7 @@ import myapp.controllers
 
 
 def application(environ, start_response):
-    routings = {
-        "/": myapp.controllers.index,
-        "/hoge": myapp.controllers.hoge,
-        "/piyo": myapp.controllers.piyo,
-        "/fuga": myapp.controllers.fuga,
-        "/gofu": myapp.controllers.gofu,
-    }
-    path_info = environ["PATH_INFO"]
-    controller = routings.get(path_info, None)
-
+    controller = _get_controller(environ)
     if controller:
         status = "200 OK"
         response_body_str = controller()
@@ -23,6 +14,17 @@ def application(environ, start_response):
     response_headers = _make_response_headers(response_body_bytes)
     start_response(status, response_headers)
     return [response_body_bytes]
+
+
+def _get_controller(environ):
+    routings = {
+        "/": myapp.controllers.index,
+        "/hoge": myapp.controllers.hoge,
+        "/piyo": myapp.controllers.piyo,
+        "/fuga": myapp.controllers.fuga,
+        "/gofu": myapp.controllers.gofu,
+    }
+    return routings.get(environ["PATH_INFO"], None)
 
 
 def _make_response_headers(response_body_bytes: bytes) -> dict[str, str]:
