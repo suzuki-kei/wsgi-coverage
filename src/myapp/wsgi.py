@@ -2,6 +2,11 @@ import myapp.controllers
 
 
 def application(environ, start_response):
+    """
+        WSGI アプリケーション.
+
+        see PEP-3333 (https://peps.python.org/pep-3333/)
+    """
     controller = _get_controller(environ)
     if controller:
         status = "200 OK"
@@ -16,7 +21,10 @@ def application(environ, start_response):
     return [response_body_bytes]
 
 
-def _get_controller(environ):
+def _get_controller(environ: dict[str, object]) -> callable:
+    """
+        リクエストを処理するコントローラを取得する.
+    """
     routings = {
         "/": myapp.controllers.index,
         "/hoge": myapp.controllers.hoge,
@@ -27,7 +35,10 @@ def _get_controller(environ):
     return routings.get(environ["PATH_INFO"], None)
 
 
-def _make_response_headers(response_body_bytes: bytes) -> dict[str, str]:
+def _make_response_headers(response_body_bytes: bytes) -> dict[tuple[str, str]]:
+    """
+        レスポンスヘッダを生成する.
+    """
     return [
         ("Content-Type", "text/plain"),
         ("Content-Length", str(len(response_body_bytes))),
