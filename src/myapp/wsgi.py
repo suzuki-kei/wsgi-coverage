@@ -20,12 +20,12 @@ def application(environ, start_response):
         response_body_str = myapp.controllers.error_404()
 
     response_body_bytes = response_body_str.encode("utf-8")
-    response_headers = make_response_headers(response_body_bytes)
+    response_headers = _make_response_headers(response_body_bytes)
     start_response(status, response_headers)
     return [response_body_bytes]
 
 
-def make_response_headers(response_body_bytes: bytes) -> dict[str, str]:
+def _make_response_headers(response_body_bytes: bytes) -> dict[str, str]:
     return [
         ("Content-Type", "text/plain"),
         ("Content-Length", str(len(response_body_bytes))),
