@@ -28,7 +28,7 @@ stop: # バックグラウンドで実行中のサーバを停止する.
 
 .PHONY: run
 run: # フォアグラウンドでサーバを実行する.
-	docker run -it --rm -p 8080:80 --name wsgi-coverage \
+	docker run -i --rm -p 8080:80 --name wsgi-coverage \
 		-v $(pwd)/src:/opt/wsgi-coverage-app/src:ro \
 		-v $(pwd)/config:/opt/wsgi-coverage-app/config:ro \
 		-v $(pwd)/scripts:/opt/wsgi-coverage-app/scripts:ro \
