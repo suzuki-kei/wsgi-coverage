@@ -10,12 +10,9 @@ WSGI アプリケーションに対するマニュアルテストのカバレッ
     # フォアグラウンドでサーバを実行する.
     make run
 
-    # (for debug) ランダムにリクエストを送信する.
-    make random-requests
-
     # カバレッジレポートを生成する.
     make report
 
-    # (for debug) bash を実行する.
-    make bash
+    # すべてのルールを表示する.
+    make help
 
