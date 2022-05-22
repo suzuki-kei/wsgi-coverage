@@ -55,7 +55,6 @@ def _new_coverage() -> coverage.Coverage:
     cov = coverage.Coverage(config_file=config_file)
     cov.load()
     return cov
-    #return coverage.Coverage(config_file=config_file)
 
 
 @measured
